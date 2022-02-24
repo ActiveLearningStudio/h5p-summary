@@ -392,8 +392,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       // Trigger overall answered xAPI event when finished
       if (finished) {
         that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'answered');
-        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'completed');
-        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'submitted-curriki');
       }
     };
 
