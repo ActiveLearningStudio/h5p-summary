@@ -359,6 +359,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
       else {
         that.announceAnswer(false);
+        that.stopStopWatch(panelId);
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
