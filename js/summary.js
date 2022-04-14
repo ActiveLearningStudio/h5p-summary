@@ -626,6 +626,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       that.read(scoreBarLabel);
     }, 3000);
 
+    // trigger question finished to show continue button in IV
+    that.trigger('question-finished');
+
     that.trigger('resize');
   };
 
