@@ -124,6 +124,18 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         answers: this.answers
       };
     };
+
+    /**
+     * Overrides the set activity started method of the superclass (H5P.EventDispatcher) and calls it
+     * at the same time.
+     */
+    this.setActivityStarted = (function (original) {
+      return function () {
+        original.call(that);
+        that.resetStopWatch(that.progress);
+        that.startStopWatch(that.progress);
+      };
+    })(this.setActivityStarted);
   }
 
   Summary.prototype = Object.create(Question.prototype);
@@ -738,6 +750,17 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.stopStopWatch = function (index) {
     if(this.stopWatches[index]){
       this.stopWatches[index].stop();
+    }
+  };
+
+  /**
+   * Resets a stopwatch for indexed slide
+   *
+   * @param {number} [index]
+   */
+  Summary.prototype.resetStopWatch = function (index) {
+    if(this.stopWatches[index]){
+      this.stopWatches[index].reset();
     }
   };
 
